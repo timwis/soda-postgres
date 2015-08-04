@@ -1,0 +1,25 @@
+{
+  "name": "soda2-turf",
+  "version": "1.0.0",
+  "description": "Use turf.js spatial analysis with Socrata's SODA2 API",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/timwis/soda2-turf.git"
+  },
+  "author": "timwis",
+  "license": "MIT",
+  "dependencies": {
+    "any-db": "^2.1.0",
+    "any-db-postgres": "^2.1.4",
+    "dotenv": "^1.2.0",
+    "mocha": "^2.2.5",
+    "node-soda2-parser": "^1.0.0",
+    "restify": "^3.0.3",
+    "should": "^7.0.2",
+    "sift": "^2.0.4"
+  }
+}
