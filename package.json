@@ -1,7 +1,7 @@
 {
   "name": "soda2-turf",
   "version": "1.0.0",
-  "description": "Use turf.js spatial analysis with Socrata's SODA2 API",
+  "description": "Use Socrata's SODA2 API to query a database",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
