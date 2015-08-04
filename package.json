@@ -11,7 +11,7 @@
     "url": "git://github.com/timwis/soda2-turf.git"
   },
   "author": "timwis",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "dependencies": {
     "any-db": "^2.1.0",
     "any-db-postgres": "^2.1.4",
