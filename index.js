@@ -37,7 +37,6 @@ var sql = 'select column_name AS name, udt_name AS type, table_name from INFORMA
 conn.query(sql, function(err, result) {
 	if(err) return console.error(err);
 	tables = _.groupBy(result.rows, 'table_name');
-	console.log(tables);
 	
 	server.listen(8080, function() {
 		console.log('%s listening at %s', server.name, server.url);
