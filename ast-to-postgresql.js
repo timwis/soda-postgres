@@ -9,25 +9,6 @@ function inspect(obj) {
   console.log(require('util').inspect(obj, false, 10, true));
 }
 
-var buildAstColumn = function(column, alias, table) {
-	return {
-		expr: {
-			type: 'column_ref',
-			table: table || '',
-			column: column
-		},
-		as: alias || null
-	};
-};
-
-var buildAstFunc = function(name, expr) {
-	return {
-		type: 'aggr_func',
-		name: name,
-		args: { expr: expr }
-	}
-}
-
 // Recursive WHERE processor
 var processWhere = function(expr) {
 	// If AND or OR, recurse
@@ -39,8 +20,10 @@ var processWhere = function(expr) {
 		if(expr.name === 'within_box') {
 			var field = expr.args.value.shift().column,
 				points = _.pluck(expr.args.value, 'value');
-			expr.type = 'raw';
-			expr.value = field + ' && ST_MakeEnvelope(' + points.join(', ') + ', 4326)';
+			expr = {
+				type: 'raw',
+				value: field + ' && ST_MakeEnvelope(' + points.join(', ') + ', 4326)' 
+			};
 		}
 		// within_circle()
 		else if(expr.name === 'within_circle') {
@@ -49,8 +32,10 @@ var processWhere = function(expr) {
 		}
 		// within_polygon()
 		else if(expr.name === 'within_polygon') {
-			expr.name = 'ST_Within';
-			expr.args.value[1] = buildAstFunc('ST_GeometryFromText', expr.args.value[1]);
+			expr = {
+				type: 'raw',
+				value: 'ST_Within(' + expr.args.value[0].column + ', ST_GeometryFromText(\'' + expr.args.value[1].value + '\'))'
+			};
 		}
 	}
 	return expr;
@@ -61,7 +46,14 @@ module.exports = function(ast, table, fields) {
 	if(ast.columns === '*') {
 		ast.columns = [];
 		fields.forEach(function(field) {
-			ast.columns.push(buildAstColumn(field.name));
+			ast.columns.push({
+				expr: {
+					type: 'column_ref',
+					table: '',
+					column: field.name
+				},
+				as: null
+			});
 		});
 	}
 	
@@ -95,9 +87,6 @@ module.exports = function(ast, table, fields) {
 	
 	// Convert AST back to SQL
 	var sql = parser.stringify.parse(ast);
-	
-	// Cast any GeoJSON references to json
-	//sql = sql.replace(/ST_AsGeoJSON\((.+?)\)/g, 'ST_AsGeoJSON($1)::json'); 
 	
 	return sql;
 };
