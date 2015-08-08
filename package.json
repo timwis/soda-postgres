@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "start": "supervisor index.js"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -21,7 +21,6 @@
     "node-soda2-parser": "^1.0.0",
     "restify": "^3.0.3",
     "should": "^7.0.2",
-    "sift": "^2.0.4",
     "underscore": "^1.8.3"
   }
 }
