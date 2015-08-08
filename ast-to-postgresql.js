@@ -74,14 +74,18 @@ module.exports = function(ast, table, fields) {
 			var field = _.findWhere(fields, {name: col.expr.column});
 			if(field && field.type === 'geometry') {
 				var fieldName = col.expr.column;
-				//col.expr = {type: 'aggr_func', name: 'ST_AsGeoJSON', args: { expr: col.expr } };
-				col.expr = buildAstFunc('ST_AsGeoJSON', col.expr);
+				col.expr = {
+					type: 'raw',
+					value: 'ST_AsGeoJSON(' + col.expr.column + ')::json'
+				};
 				if(col.as === undefined || ! col.as) col.as = fieldName;
 			}
 		} else if(col.expr.type === 'aggr_func') {
 			if(col.expr.name === 'convex_hull') {
-				col.expr.name = 'ST_AsGeoJSON';
-				col.expr.args = {expr: buildAstFunc('ST_ConvexHull', buildAstFunc('ST_Collect', col.expr.args.expr))};
+				col.expr = {
+					type: 'raw',
+					value: 'ST_AsGeoJSON(ST_ConvexHull(ST_Collect(' + col.expr.args.expr.column + ')))::json'
+				};
 			}
 		}
 	});
@@ -93,7 +97,7 @@ module.exports = function(ast, table, fields) {
 	var sql = parser.stringify.parse(ast);
 	
 	// Cast any GeoJSON references to json
-	sql = sql.replace(/ST_AsGeoJSON\((.+?)\)/g, 'ST_AsGeoJSON($1)::json'); 
+	//sql = sql.replace(/ST_AsGeoJSON\((.+?)\)/g, 'ST_AsGeoJSON($1)::json'); 
 	
 	return sql;
 };
