@@ -1,9 +1,9 @@
-var parser = require('../node-soda2-parser'),
-	restify = require('restify'),
-	_ = require('underscore'),
-	anyDB = require('any-db-postgres'),
-	processWhere = require('./lib/where'),
-	processSelect = require('./lib/select');
+var //parser = require('../node-soda2-parser'),
+	restify = require('restify');
+	//_ = require('underscore'),
+	//anyDB = require('any-db-postgres'),
+	//processWhere = require('./lib/where'),
+	//processSelect = require('./lib/select');
 //require('dotenv').load();
 
 var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080,
@@ -11,7 +11,7 @@ var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080,
 	//conn = anyDB.createConnection(process.env.DATABASE_URL),
 	tables = {},
 	server = restify.createServer();
-server.use(restify.queryParser());
+/*server.use(restify.queryParser());
 
 server.get('/resource/:table', function(req, res, next) {
 	// If table doesn't exist, send error
@@ -40,7 +40,7 @@ server.get('/resource/:table', function(req, res, next) {
 		res.json(result.rows);
 		next();
 	});
-});
+});*/
 
 /**
  * Get tables & fields, then start the server
