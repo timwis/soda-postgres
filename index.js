@@ -6,7 +6,9 @@ var parser = require('../node-soda2-parser'),
 	processSelect = require('./lib/select');
 require('dotenv').load();
 
-var conn = anyDB.createConnection(process.env.DATABASE_URL),
+var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080,
+	server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1', 
+	conn = anyDB.createConnection(process.env.DATABASE_URL),
 	tables = {},
 	server = restify.createServer();
 server.use(restify.queryParser());
@@ -48,7 +50,7 @@ conn.query(sql, function(err, result) {
 	if(err) return console.error(err);
 	tables = _.groupBy(result.rows, 'table_name');
 	
-	server.listen(8080, function() {
+	server.listen(server_port, server_ip_address, function() {
 		console.log('%s listening at %s', server.name, server.url);
 	});
 });

@@ -4,7 +4,8 @@
   "description": "Use Socrata's SODA2 API to query a database",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start": "supervisor index.js"
   },
   "repository": {
     "type": "git",
