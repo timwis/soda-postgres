@@ -1,7 +1,7 @@
 {
-  "name": "soda2-turf",
+  "name": "soda-postgres",
   "version": "1.0.0",
-  "description": "Use Socrata's SODA2 API to query a database",
+  "description": "Use Socrata's SODA2 API to query a postgres database",
   "main": "index.js",
   "scripts": {
     "test": "mocha",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/timwis/soda2-turf.git"
+    "url": "git://github.com/timwis/soda-postgres.git"
   },
   "bin": {
     "sodapg": "./index.js"
