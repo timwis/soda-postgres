@@ -1,5 +1,5 @@
 # soda-postgres
-Use Socrata's SODA2 API to query a postgres database
+Uses [node-soda2-parser](https://github.com/timwis/node-soda2-parser) to provide a Socrata-style SODA2 API in front of a postgres database
 
 # Installation
 1. Clone the repo
