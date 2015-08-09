@@ -1,19 +1,6 @@
-var restify = require('restify');
-
-var server = restify.createServer();
-
-server.get('/', function(req, res, next) {
-	res.send('hello!');
-});
-
-var port = process.env.PORT || 5000;
-server.listen(port, function() {
-	console.log('Listening on port ' + port);
-});
-
-/*var parser = require('node-soda2-parser'),
-	restify = require('restify'),
-	_ = require('underscore'),
+var parser = require('node-soda2-parser'),
+	restify = require('restify');
+	/*_ = require('underscore'),
 	anyDB = require('any-db-postgres'),
 	processWhere = require('./lib/where'),
 	processSelect = require('./lib/select');
@@ -58,13 +45,12 @@ server.get('/resource/:table', function(req, res, next) {
 /**
  * Get tables & fields, then start the server
  */
-/*var sql = 'select column_name AS name, udt_name AS type, table_name from INFORMATION_SCHEMA.COLUMNS where table_schema = \'public\';';
-conn.query(sql, function(err, result) {
-	if(err) return console.error(err);
-	tables = _.groupBy(result.rows, 'table_name');
+//var sql = 'select column_name AS name, udt_name AS type, table_name from INFORMATION_SCHEMA.COLUMNS where table_schema = \'public\';';
+//conn.query(sql, function(err, result) {
+//	if(err) return console.error(err);
+//	tables = _.groupBy(result.rows, 'table_name');
 	
-	server.listen(server_port, server_ip_address, function() {
+	server.listen(process.env.PORT || 8080, function() {
 		console.log('%s listening at %s', server.name, server.url);
 	});
-});
-*/
+//});
