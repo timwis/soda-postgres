@@ -11,6 +11,9 @@
     "type": "git",
     "url": "git://github.com/timwis/soda2-turf.git"
   },
+  "bin": {
+    "sodapg": "./index.js"
+  },
   "author": "timwis",
   "license": "Apache-2.0",
   "dependencies": {
