@@ -48,7 +48,7 @@ conn.query(sql, function(err, result) {
 	if(err) return console.error(err);
 	tables = _.groupBy(result.rows, 'table_name');
 	
-	server.listen(process.env.PORT || 8080, function() {
+	server.listen(process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 8080, function() {
 		console.log('%s listening at %s', server.name, server.url);
 	});
 });
