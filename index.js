@@ -1,15 +1,13 @@
 var parser = require('node-soda2-parser'),
 	restify = require('restify');
-	/*_ = require('underscore'),
+	_ = require('underscore'),
 	anyDB = require('any-db-postgres'),
 	processWhere = require('./lib/where'),
 	processSelect = require('./lib/select');
 require('dotenv').load({silent: true});
 
-var server_port = process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 8080,
-	server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1', 
-	conn = anyDB.createConnection(process.env.DATABASE_URL),
-	tables = {},*/
+var conn = anyDB.createConnection(process.env.DATABASE_URL),
+	tables = {},
 	server = restify.createServer();
 /*server.use(restify.queryParser());
 
