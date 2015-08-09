@@ -9,9 +9,9 @@ require('dotenv').load({silent: true});
 var server_port = process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 8080,
 	server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1', 
 	conn = anyDB.createConnection(process.env.DATABASE_URL),
-	tables = {},
+	tables = {},*/
 	server = restify.createServer();
-server.use(restify.queryParser());
+/*server.use(restify.queryParser());
 
 server.get('/resource/:table', function(req, res, next) {
 	// If table doesn't exist, send error
