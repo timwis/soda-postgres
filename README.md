@@ -10,8 +10,8 @@ Use Socrata's SODA2 API to query a postgres database
 To run a SODA2 API server, use `node index.js` Then query the API using SODA2 calls, ie. `http://localhost:8080/?$select=*&zip_code=19141`
 
 # Examples
-* $select=zip_code, screening_type, geom
-* $select=convex_hull(geom) AS hull&zip_code=19146
-* $where=within_box(geom, 47.5, -122.3, 47.5, -122.3)
-* $where=within_circle(geom, 47.59815, -122.33454, 500)
+* [$select=zip_code, screening_type, geom](http://104.236.214.217/resource/sites?$select=zip_code, screening_type, geom)
+* [$select=convex_hull(geom) AS hull&zip_code=19146](http://104.236.214.217/resource/sites?$select=convex_hull(geom) AS hull&zip_code=19146)
+* [$where=within_box(geom,-75.182324,39.949259,-75.170769,39.934494)](http://104.236.214.217/resource/sites?$where=within_box(geom,-75.182324,39.949259,-75.170769,39.934494))
+* [$where=within_circle(geom,-75.163406,39.952503,1000)](http://104.236.214.217/resource/sites?$where=within_circle(geom,-75.163406,39.952503,1000))
 * $where=within_polygon(geom, 'MULTIPOLYGON (((-87.637714 41.887275, -87.613681 41.886892, -87.625526 41.871555, -87.637714 41.887275)))')
