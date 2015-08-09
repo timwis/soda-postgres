@@ -1,4 +1,4 @@
-var parser = require('../node-soda2-parser'),
+var parser = require('node-soda2-parser'),
 	restify = require('restify'),
 	_ = require('underscore'),
 	anyDB = require('any-db-postgres'),
