@@ -26,7 +26,7 @@ server.get('/resource/:table', function(req, res, next) {
 	ast.columns = processSelect(ast.columns, tables[req.params.table]);
 	
 	// Add FROM table to AST
-	ast.from = [{table: req.params.table}];
+	ast.from = [{table: '"' + req.params.table + '"'}];
 	
 	// Process WHERE recursively
 	if(ast.where) ast.where = processWhere(ast.where);
